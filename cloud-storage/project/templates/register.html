@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style\style.css' %}">
+</head>
+<body>
+{% if form.errors %}
+<div class="error__container" onclick="closePopUp(this)">
+    <div>
+        <h1>Registration errors:</h1>
+        <ul>
+            {% for field in form %}
+            {% for error in field.errors %}
+            <li>{{ field.name }}: {{ error }}</li>
+            {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endif %}
+<div class="form__container">
+    <form action="" method="post">
+        {% csrf_token %}
+        <h1>REGISTER</h1>
+        <p>Please enter your login, email and password!</p>
+        <input type="text" placeholder="Username" aria-label="" name="name">
+        <input type="email" placeholder="Email" aria-label="" name="email">
+        <input type="password" placeholder="Password" aria-label="" name="password">
+        <input type="password" placeholder="Password confirmation" aria-label="" name="password-confirmation">
+        <button type="submit">Register</button>
+        <a href="/login">Already have an account?</a>
+    </form>
+</div>
+<script src="{% static 'script\script.js' %}"></script>
+</body>
+</html>

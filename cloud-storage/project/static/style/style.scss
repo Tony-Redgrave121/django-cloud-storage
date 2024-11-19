@@ -1,0 +1,110 @@
+@use './base/_variables' as v;
+@use "./base/_mixin.scss" as m;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  list-style: none;
+  scroll-behavior: smooth;
+  color: white;
+  font-family: 'Kanit', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+input, textarea, label {
+  all: unset;
+}
+
+body {
+  background-size: 100% 100%;
+  background-image: linear-gradient(125deg, #b70b2e 0%, #260e63 100%);
+  height: 100vh;
+}
+
+.form__container, .error__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 60px 100px;
+    margin: 50px auto;
+    text-align: center;
+    background-color: v.$dark-shade-10;
+
+    h1 {
+      font-size: 34px;
+    }
+
+    p {
+      color: v.$grey-shade-50;
+    }
+
+    input, button {
+      padding: 13px;
+      border: 1px solid v.$dark-shade-15;
+      border-radius: 25px;
+      width: 100%;
+
+    }
+
+    ::-ms-reveal {
+      filter: invert(100%);
+    }
+
+    button {
+      width: 35%;
+      transition: .3s background-color ease-in-out;
+
+      &:hover {
+        background-color: v.$dark-shade-15;
+      }
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.error__container {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  opacity: 1;
+  transition: .5s opacity ease-in-out;
+  cursor: pointer;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 60px 100px;
+    max-width: 600px;
+    background-color: v.$dark-shade-10;
+    border: 1px solid v.$dark-shade-15;
+
+    > ul {
+      padding-left: 20px;
+
+      li {
+        list-style: circle;
+      }
+    }
+  }
+}
