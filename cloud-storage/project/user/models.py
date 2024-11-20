@@ -1,10 +1,11 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-class User(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    name = models.CharField(max_length=100)
-    email = models.CharField(max_length=100, unique=True)
-    password = models.CharField(max_length=20)
+class User(AbstractUser):
+    # id = models.BigAutoField(primary_key=True)
+    # username = models.CharField(max_length=100, unique=True, null=False)
+    # email = models.CharField(max_length=100, unique=True, null=False)
+    # password = models.CharField(max_length=20, null=False)
     space = models.IntegerField(default=1024**3*10)
     used_space = models.IntegerField(default=0)
 

@@ -9,29 +9,27 @@
     <link rel="stylesheet" href="{% static 'style\style.css' %}">
 </head>
 <body>
-{% if form.errors %}
+{% if messages %}
 <div class="error__container" onclick="closePopUp(this)">
     <div>
         <h1>Registration errors:</h1>
         <ul>
-            {% for field in form %}
-            {% for error in field.errors %}
-            <li>{{ field.name }}: {{ error }}</li>
-            {% endfor %}
+            {% for error in messages %}
+            <li>{{ error }}</li>
             {% endfor %}
         </ul>
     </div>
 </div>
 {% endif %}
 <div class="form__container">
-    <form action="" method="post">
+    <form method="post">
         {% csrf_token %}
         <h1>REGISTER</h1>
         <p>Please enter your login, email and password!</p>
-        <input type="text" placeholder="Username" aria-label="" name="name">
+        <input type="text" placeholder="Username" aria-label="" name="username">
         <input type="email" placeholder="Email" aria-label="" name="email">
-        <input type="password" placeholder="Password" aria-label="" name="password">
-        <input type="password" placeholder="Password confirmation" aria-label="" name="password-confirmation">
+        <input type="password" placeholder="Password" aria-label="" name="password1">
+        <input type="password" placeholder="Password confirmation" aria-label="" name="password2">
         <button type="submit">Register</button>
         <a href="/login">Already have an account?</a>
     </form>

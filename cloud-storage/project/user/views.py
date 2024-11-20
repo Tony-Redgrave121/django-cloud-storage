@@ -1,64 +1,58 @@
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import UserCreationForm
-from django import forms
+from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from user.models import User
+from django.contrib import messages
 
 
-class CustomUserCreationForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['name', 'email', 'password']
-
+def check_auth(req, page):
+    if req.user.is_authenticated:
+        return redirect('/')
+    return render(req, f'{page}.html')
 
 def home(req):
+    if not req.user.is_authenticated:
+        return redirect('login')
     return render(req, 'index.html')
 
-
 def login_user(req):
+
     if req.POST:
-        f_name = req.POST.get('name')
+        f_username = req.POST.get('username')
         f_password = req.POST.get('password')
-        user = authenticate(req, name=f_name, password=f_password)
+
+        user = authenticate(username=f_username, password=f_password)
         if user is not None:
             login(req, user)
             return redirect('/')
         else:
-            return redirect(req, '/login', {'error': 'Invalid username or password'})
+            if not User.objects.filter(username=f_username).exists():
+                messages.error(req, 'User with this username not exists')
+            else:
+                messages.error(req, 'Invalid password entered')
 
-    return render(req, 'login.html')
+    return check_auth(req, 'login')
 
-
-# user
-# user@gnail.com
 
 def register_user(req):
     if req.POST:
-        form = CustomUserCreationForm(req.POST)
+        f_username = req.POST.get('username')
+        f_email = req.POST.get('email')
+        f_password1 = req.POST.get('password1')
+        f_password2 = req.POST.get('password2')
 
-        if form.is_valid():
-            f_email = form.cleaned_data['email']
-            f_password = form.cleaned_data['password']
-            f_password_confirmation = req.POST.get('password-confirmation')
+        if not f_username or not f_email or not f_password1 or not f_password2:
+            messages.error(req, 'Please fill in all the fields below')
+        elif f_password1 != f_password2:
+            messages.error(req, 'Password confirmation does not match the password')
+        elif User.objects.filter(email=f_email).exists() or User.objects.filter(username=f_username).exists():
+            messages.error(req, 'User with this username or email already exists')
 
+        if messages.get_messages(req):
+            return render(req, 'register.html')
 
-            if f_password != f_password_confirmation:
-                return render(req, 'register.html', {
-                    'form': form,
-                    'error': 'Password confirmation does not match the password.'
-                })
-            print(f_password != f_password_confirmation)
+        user = User.objects.create_user(username=f_username, email=f_email, password=f_password1)
+        user.save()
+        login(req, user)
 
-            if User.objects.filter(email=f_email).exists():
-                return render(req, 'register.html', {
-                    'form': form,
-                    'error': 'User with this email already exists.'
-                })
+    return check_auth(req, 'register')
 
-            user = form.save()
-            login(req, user)
-            return redirect('/')
-    else:
-        form = CustomUserCreationForm()
-
-    return render(req, 'register.html', {'form': form})
