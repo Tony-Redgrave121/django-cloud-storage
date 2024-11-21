@@ -4,18 +4,27 @@ from user.models import User
 from django.contrib import messages
 
 
+class HomeDate:
+    def __init__(self, space, used_space):
+        self.space = space / 1024 ** 3 * 10
+        self.used_space = used_space / 1024 ** 3 * 10
+
+
 def check_auth(req, page):
     if req.user.is_authenticated:
         return redirect('/')
     return render(req, f'{page}.html')
 
+
 def home(req):
     if not req.user.is_authenticated:
         return redirect('login')
-    return render(req, 'index.html')
+
+    home_data = HomeDate(space=req.user.space, used_space=req.user.used_space)
+    return render(req, 'index.html', {'home_data': home_data})
+
 
 def login_user(req):
-
     if req.POST:
         f_username = req.POST.get('username')
         f_password = req.POST.get('password')
@@ -55,4 +64,3 @@ def register_user(req):
         login(req, user)
 
     return check_auth(req, 'register')
-

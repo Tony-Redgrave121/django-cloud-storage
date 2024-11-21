@@ -26,14 +26,32 @@
 <main>
     <aside>
         <div>
-            <span><button> <img src="{% static 'icons\plus-icon.svg' %}" alt="create"> Create</button></span>
             <div>
-                <p>Used {{ user.used_space }} from {{ user.space }} GB</p>
+                <span>
+                    <button><img src="{% static 'icons\folder-plus-icon.svg' %}" alt="create folder"> Create Folder</button>
+                </span>
+                <span>
+                    <button><img src="{% static 'icons\file-icon.svg' %}" alt="upload file"> Upload File</button>
+                </span>
+                <span>
+                    <button><img src="{% static 'icons\folder-icon.svg' %}" alt="upload folder"> Upload Folder</button>
+                </span>
+            </div>
+            <div>
+                <p>Used {{ home_data.used_space }} GB from {{ home_data.space }} GB</p>
             </div>
         </div>
     </aside>
     <section>
-
+        <span class="path__container">
+            <button>Opened for me</button>
+            <img src="{% static 'icons\arrow-right-icon.svg' %}" alt="arrow right">
+            <button>Course 4</button>
+            <img src="{% static 'icons\arrow-right-icon.svg' %}" alt="arrow right">
+            <button>NoSQL-system</button>
+            <img src="{% static 'icons\arrow-right-icon.svg' %}" alt="arrow right">
+            <button>Test Module Neo4j</button>
+        </span>
     </section>
 </main>
 </body>
