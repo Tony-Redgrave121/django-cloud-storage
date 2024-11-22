@@ -19,7 +19,7 @@
         </a>
         <input type="text" aria-label="" placeholder="Search files..">
         <button>
-            <img src="{% static 'image\user.png' %}" alt="{{user}}">
+            <a href="/logout"><img src="{% static 'image\user.png' %}" alt="{{user}}"></a>
         </button>
     </div>
 </header>
@@ -43,15 +43,54 @@
         </div>
     </aside>
     <section>
-        <span class="path__container">
-            <button>Opened for me</button>
-            <img src="{% static 'icons\arrow-right-icon.svg' %}" alt="arrow right">
-            <button>Course 4</button>
-            <img src="{% static 'icons\arrow-right-icon.svg' %}" alt="arrow right">
-            <button>NoSQL-system</button>
-            <img src="{% static 'icons\arrow-right-icon.svg' %}" alt="arrow right">
-            <button>Test Module Neo4j</button>
-        </span>
+        <div class="path">
+            <span class="path__container">
+                <button>Opened for me</button>
+                <img src="{% static 'icons\arrow-right-icon.svg' %}" alt="arrow right">
+                <button>Course 4</button>
+                <img src="{% static 'icons\arrow-right-icon.svg' %}" alt="arrow right">
+                <button>NoSQL-system</button>
+                <img src="{% static 'icons\arrow-right-icon.svg' %}" alt="arrow right">
+                <button>Test Module Neo4j</button>
+                <img src="{% static 'icons\arrow-right-icon.svg' %}" alt="arrow right">
+                <button>Course 4</button>
+                <img src="{% static 'icons\arrow-right-icon.svg' %}" alt="arrow right">
+                <button>NoSQL-system</button>
+                <img src="{% static 'icons\arrow-right-icon.svg' %}" alt="arrow right">
+                <button>Test Module Neo4j</button>
+            </span>
+            <span>
+                <button class="active">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" stroke="#B3B3B3FF" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+                <button>
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                      <path stroke="#B3B3B3FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z"/>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <div class="manipulation">
+            <div class="manipulation__container_sort">
+                <select aria-label="">
+                    <option value="0">Type:</option>
+                    <option value="1">Photos</option>
+                    <option value="2">Archives</option>
+                    <option value="3">Documents</option>
+                </select>
+                <select aria-label="">
+                    <option value="0">Changed:</option>
+                    <option value="1">Today</option>
+                    <option value="2">Last 7 days</option>
+                    <option value="3">Last 30 days</option>
+                </select>
+            </div>
+            <div class="manipulation__container_filter">
+
+            </div>
+        </div>
     </section>
 </main>
 </body>

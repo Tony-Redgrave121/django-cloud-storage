@@ -1,4 +1,4 @@
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
 from user.models import User
 from django.contrib import messages
@@ -40,6 +40,13 @@ def login_user(req):
                 messages.error(req, 'Invalid password entered')
 
     return check_auth(req, 'login')
+
+
+def logout_user(req):
+    if req.user.is_authenticated:
+        logout(req)
+        return redirect('login')
+    return redirect('login')
 
 
 def register_user(req):

@@ -18,13 +18,13 @@ button {
   cursor: pointer;
 }
 
-input, textarea, label {
+input, textarea, label, select, option {
   all: unset;
 }
 
 body {
   background-size: 100% 100%;
-  background-image: linear-gradient(125deg, #640000 0%, #000000 100%);
+  background-image: linear-gradient(125deg, #b70b2e 0%, #260e63 100%);
   height: 100vh;
 }
 
@@ -185,10 +185,80 @@ main section {
   max-width: 1440px;
   padding: 25px 0 25px 25px;
 }
+main section .path {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
 main section .path__container {
   display: flex;
   gap: 10px;
   font-size: 24px;
+  white-space: nowrap;
+  overflow-x: scroll;
+  padding: 0 0 15px 0;
+}
+main section .path__container button {
+  transition: 0.2s color ease-in-out;
+}
+main section .path__container button:hover {
+  color: #B3B3B3;
+}
+main section .path__container::-webkit-scrollbar {
+  height: 5px;
+}
+main section .path__container::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 5px;
+}
+main section .path > :last-child {
+  display: flex;
+  border-radius: 15px;
+  border: 1px solid #262626;
+}
+main section .path > :last-child > :first-child {
+  border-right: 1px solid #262626;
+}
+main section .path > :last-child button {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+main section .path > :last-child button, main section .path > :last-child button path {
+  transition: 0.2s all ease-in-out;
+}
+main section .path > :last-child .active path, main section .path > :last-child button:hover path, main section .path > :last-child button:hover {
+  stroke: white;
+  background-color: #1A1A1A;
+}
+main section .manipulation {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 0;
+}
+main section .manipulation__container_sort {
+  display: flex;
+  gap: 25px;
+}
+main section .manipulation__container_sort select {
+  width: 100px;
+  padding: 10px 15px;
+  font-size: 14px;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: calc(100% - 7.5px);
+  background-position-y: 10px;
+  background-color: #141414;
+  border-radius: 10px;
+  border: 1px solid #262626;
+  cursor: pointer;
+}
+main section .manipulation__container_sort select option {
+  cursor: pointer;
+  transition: 0.2s background-color ease-in-out;
+}
+main section .manipulation__container_sort select option:hover {
+  background-color: #1A1A1A;
 }
 
 /*# sourceMappingURL=style.css.map */
